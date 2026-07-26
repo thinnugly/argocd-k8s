@@ -8,4 +8,4 @@ resources:
 images:
 - name: pacman2022/argocd-k8s
   newName: pacman2022/argocd-k8s
-  newTag: 046db78533c0af4bd70d1017dda303fb12acbe2e
+  newTag: 798c4dbb9204a9e6eb7fbb6bdd3b0db298494a61
