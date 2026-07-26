@@ -5,6 +5,7 @@ metadata:
   annotations:
     # Garante que o JOB rode antes da API
     argocd.argoproj.io/sync-wave: "1"
+    argocd.argoproj.io/sync-options: Force=true
 spec:
   template:
     spec:
