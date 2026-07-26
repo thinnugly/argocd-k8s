@@ -3,6 +3,8 @@ apiVersion: apps/v1
 kind: Deployment
 metadata:
   name: argocd-k8s-api
+  annotations:
+    argocd.argoproj.io/syn-wave: "2"
 spec:
   selector:
     matchLabels:

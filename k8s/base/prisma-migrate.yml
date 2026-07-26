@@ -4,7 +4,7 @@ metadata:
   name: argocd-k8s-prisma-migrate
   annotations:
     # Garante que o JOB rode antes da API
-    argocd.argoproj.io/hook: PreSync
+    argocd.argoproj.io/syn-wave: "1"
 spec:
   # Apaga o JOB 100s depois de terminar
   ttlSecondsAfterFinished: 100
