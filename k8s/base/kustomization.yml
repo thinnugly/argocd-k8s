@@ -1,0 +1,16 @@
+apiVersion: kustomize.config.k8s.io/v1beta1
+kind: Kustomization
+
+namespace: prod-environment
+
+commonLabels:
+  project: argocd-k8s
+  environment: production
+
+resources:
+  - api-config.yml
+  - api-secret.yml
+  - api-db.yml
+  - prisma-migrate.yml
+  - api-server.yml
+  - api-hpa.yml

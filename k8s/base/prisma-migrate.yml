@@ -1,0 +1,26 @@
+apiVersion: batch/v1
+kind: Job
+metadata:
+  name: argocd-k8s-prisma-migrate
+  annotations:
+    # Garante que o JOB rode antes da API
+    argocd.argoproj.io/hook: PreSync
+spec:
+  # Apaga o JOB 100s depois de terminar
+  ttlSecondsAfterFinished: 100
+  template:
+    spec:
+      containers:
+      - name: prisma-migrate
+        image: pacman2022/argocd-k8s:latest
+        command: ["npx",  "prisma", "migrate", "deploy"]
+        env:
+          - name: DATABASE_URL
+            valueFrom:
+              secretKeyRef:
+                name: api-secrets
+                key: DATABASE_URL
+      # Se tudo correr bem (Sucesso) nao permite iniciar o JOB
+      restartPolicy: Never
+  # Garante duas tentativas em caso de erro
+  backoffLimit: 2

@@ -1,0 +1,19 @@
+# Dependencies
+node_modules/
+
+# Environment Variables
+.env
+.env.*
+!.env.example
+
+# Prisma Generated Client (v7)
+/src/generated/
+
+# OS Files
+.DS_Store
+
+# IDEs
+.vscode/
+.claude/
+.windsurf/
+.agents/

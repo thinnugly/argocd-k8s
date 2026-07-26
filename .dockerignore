@@ -1,0 +1,14 @@
+node_modules/
+.env
+.env.*
+.DS_Store
+.git
+.gitignore
+.dockerignore
+/src/generated/
+docker-compose.yml
+k8s/
+.claude/
+.windsurf/
+.agents/
+Dockerfile

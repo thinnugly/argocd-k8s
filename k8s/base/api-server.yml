@@ -1,0 +1,52 @@
+# Deployment do Node (Container)
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: argocd-k8s-api
+spec:
+  selector:
+    matchLabels:
+      app: api-node
+  template:
+    metadata:
+      labels:
+        app: api-node
+    spec:
+      containers:
+      - name: api-node
+        image: pacman2022/argocd-k8s:latest
+        resources:
+          requests:
+            memory: "128Mi"
+            cpu: "100m"
+          limits:
+            memory: "256Mi"
+            cpu: "300m"
+        ports:
+        - containerPort: 3000
+        env:
+          - name: JWT_SECRET
+            valueFrom:
+              secretKeyRef:
+                name: api-secrets
+                key: JWT_SECRET
+          - name: DATABASE_URL
+            valueFrom:
+              secretKeyRef:
+                name: api-secrets
+                key: DATABASE_URL
+
+---
+# O Service para redistribuir requisicoes e export a API (LoadBalancer)
+apiVersion: v1
+kind: Service
+metadata:
+  name: api-service
+spec:
+  type: LoadBalancer
+  selector:
+    app: api-node
+  ports:
+  - port: 80
+    targetPort: 3000
+
